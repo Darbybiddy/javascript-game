@@ -1,12 +1,71 @@
-
 var playerName = window.prompt("What is your robot's name?");
-// What is this?
-console.log(playerName);
+var playerHealth = 100;
+var playerAttack = 10;
+var playerMoney = 10;
 
-console.log("This logs a string, good for leaving yourself a message");
-// this will do math and log 20
-console.log(10 + 10);
-// what is this?
-console.log("Our robot's name is " + "darby");
+// You can also log multiple values at once like this
+console.log(playerName, playerAttack, playerHealth);
 
-// fight();
+var enemyName = "Roborto";
+var enemyHealth = 50;
+var enemyAttack = 12;
+
+var fight = function() {
+//alert players that they are starting the round
+  window.alert("Welcome to Robot Gladiators!");
+
+var promptFight = window.prompt("Would you like to 'FIGHT' or 'SKIP' this battle? Enter FIGHT or SKIP to choose. ")
+
+/* disecting this set of code lines 20-24
+anything that is put inside the () on a IF statement will result in a true false value. 
+if (promptFight === "FIGHT || promptFight === "fight")  means that were checking to see if the value of promptFight is the words FIGHT and fight.
+*/
+
+// if player choses to fight, then fight
+if (promptFight === "fight" || promptFight === "FIGHT") {
+    // remove enemy's health by subtracting the amount set in the playerAttack variable
+    enemyHealth = enemyHealth - playerAttack;
+    console.log(
+      playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
+    );
+  
+    // check enemy's health
+    if (enemyHealth <= 0) {
+      window.alert(enemyName + " has died!");
+    } else {
+      window.alert(enemyName + " still has " + enemyHealth + " health left.");
+    }
+  
+    // remove player's health by subtracting the amount set in the enemyAttack variable
+    playerHealth = playerHealth - enemyAttack;
+    console.log(
+      enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
+    );
+  
+    // check player's health
+    if (playerHealth <= 0) {
+      window.alert(playerName + " has died!");
+    } else {
+      window.alert(playerName + " still has " + playerHealth + " health left.");
+    }
+   
+/* In our case, we're using else if to do a similar check as our IF statement, but now we're checking to see if the player wrote in "SKIP" or "skip" instead.*/    
+
+    // if player choses to skip
+  } else if (promptFight === "skip" || promptFight === "SKIP") {
+//confirm player wants to skip
+var confirmSkip = window.confirm("Are you sure you would like to quit?");
+
+//if yes(true), leave fight
+    if (confirmSkip){
+        window.alert(playerName + "has decided to skip this fight. Goodbye!")
+//subtract money from playerMoney for skipping
+        playerMoney = playerMoney - 2;
+  } 
+  
+    else {
+    window.alert("You need to choose a valid option. Try again!");
+  }
+}
+
+fight();
